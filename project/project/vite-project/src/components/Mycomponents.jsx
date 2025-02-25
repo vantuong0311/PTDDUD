@@ -1,40 +1,40 @@
-import React from "react";
-import Childcomponent from "./Childcomponent"
-import DisplayInfo from "./DisplayInfo"
-import AddUserInfor from "./AddUserInfor"
-class Mycomponents extends React.Component {
-    state = {
-        listUser: [
-            { id: 1, Name: "Toàn", Age: 49 },
-            { id: 2, Name: "Tưởng", Age: 17 },
-            { id: 3, Name: "Ý", Age: 32 },
-        ]
-    }
-    handleAddnewUser = (userObject) => {
-        this.setState({
-            listUser: [userObject, ...this.state.listUser]
-        })
-    }
-    handleDeleteUser = (userID) => {
-        let listUserClone = this.state.listUser;
-        // let listUserClone=[...this.state.listUser]//có thể viết theo cách này
-        listUserClone = listUserClone.filter(item => item.id !== userID)
-        this.setState({
-            listUser: listUserClone
-        })
-    }
-    render() {
-        return (
-            <div>
+import { useState } from "react";
+import AddUserInfor from "./AddUserInfor";
+import DisplayInfo from "./DisplayInfo";
 
-                <AddUserInfor handleAddnewUser={this.handleAddnewUser}>
-                </AddUserInfor>
-                <hr />
-                <DisplayInfo listUser={this.state.listUser}
-                    handleDeleteUser={this.handleDeleteUser}
-                ></DisplayInfo>
-            </div>
-        );
-    }
-}
+const Mycomponents = () => {
+    const [listUser, setListUser] = useState([
+        { id: 1, Name: "Toàn", Age: 49 },
+        { id: 2, Name: "Tưởng", Age: 17 },
+        { id: 3, Name: "Ý", Age: 32 },
+    ]);
+
+    const handleAddnewUser = (userObject) => {
+        setListUser((prevList) => [userObject, ...prevList]);
+    };
+
+    const handleDeleteUser = (userID) => {
+        setListUser(listUser.filter((item) => item.id !== userID));
+    };
+
+    const handleDeleteAllUsers = () => {
+        setListUser([]); // Xóa toàn bộ danh sách
+    };
+
+    return (
+        <div>
+            <h2>Quản lý người dùng</h2>
+            <AddUserInfor handleAddnewUser={handleAddnewUser} userCount={listUser.length} />
+            <hr />
+            <DisplayInfo listUser={listUser} handleDeleteUser={handleDeleteUser} />
+
+            {listUser.length > 0 && (
+                <button onClick={handleDeleteAllUsers} style={{ marginTop: "10px", padding: "8px", backgroundColor: "red", color: "white" }}>
+                    Delete All
+                </button>
+            )}
+        </div>
+    );
+};
+
 export default Mycomponents;

@@ -1,56 +1,48 @@
-import React from "react";
+import { useState } from "react";
 
-class AddUserInfor extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            Name: '', // giá trị mặc định cho Name
-            Age: ''   // giá trị mặc định cho Age
-        };
-    }
+const AddUserInfor = ({ handleAddnewUser, userCount }) => {
+    const [name, setName] = useState('');
+    const [age, setAge] = useState('');
 
-    handleOnSubmit = (event) => {
-        event.preventDefault(); // ngăn việc tải lại trang
-        this.props.handleAddnewUser({
-            id: Math.floor((Math.random() * 100) + 1), // ID ngẫu nhiên
-            Name: this.state.Name,
-            Age: this.state.Age
+    const handleOnSubmit = (event) => {
+        event.preventDefault();
+        if (!name || !age) return alert("Vui lòng nhập đầy đủ thông tin!");
+        
+        // Kiểm tra nếu đã có 10 người dùng thì hiển thị cảnh báo
+        if (userCount >= 10) {
+            alert("Không thể thêm quá 10 người dùng!");
+            return;
+        }
+
+        handleAddnewUser({
+            id: Math.floor(Math.random() * 100) + 1, // ID ngẫu nhiên
+            Name: name,
+            Age: age
         });
 
-        // Reset giá trị sau khi submit
-        this.setState({
-            Name: '',
-            Age: ''
-        });
+        setName('');
+        setAge('');
     };
 
-    handleOnChangeInput = (event, field) => {
-        this.setState({
-            [field]: event.target.value // cập nhật giá trị dựa vào trường
-        });
-    };
-
-    render() {
-        return (
-            <form onSubmit={this.handleOnSubmit}>
-                <input
-                    type="text"
-                    placeholder="Name"
-                    value={this.state.Name} // gán giá trị từ state
-                    onChange={(event) => this.handleOnChangeInput(event, 'Name')} // xử lý sự kiện cho Name
-                />
-                <br />
-                <input
-                    type="text"
-                    placeholder="Age"
-                    value={this.state.Age} // gán giá trị từ state
-                    onChange={(event) => this.handleOnChangeInput(event, 'Age')} // xử lý sự kiện cho Age
-                />
-                <br />
-                <button>Submit</button>
-            </form>
-        );
-    }
-}
+    return (
+        <form onSubmit={handleOnSubmit}>
+            <input
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+            />
+            <br />
+            <input
+                type="text"
+                placeholder="Age"
+                value={age}
+                onChange={(event) => setAge(event.target.value)}
+            />
+            <br />
+            <button type="submit">Submit</button>
+        </form>
+    );
+};
 
 export default AddUserInfor;
