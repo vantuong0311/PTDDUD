@@ -1,0 +1,145 @@
+/* Định dạng tổng thể */
+.container {
+  width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề */
+.title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Form nhập liệu */
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: white;
+  color: black;
+}
+
+.input-group button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.input-group button:hover {
+  background-color: #0056b3;
+}
+
+/* Bảng danh sách sinh viên */
+.table-container {
+  overflow-x: auto;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.student-table th,
+.student-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  color: black;
+}
+
+.student-table th {
+  background: #007bff;
+  color: black;
+}
+
+/* .student-table tr:hover {
+  background: ;
+} */
+
+/* Nút xóa */
+.delete-btn {
+  padding: 5px 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #a71d2a;
+}
+
+/* Khi không có dữ liệu */
+.no-data {
+  text-align: center;
+  color: #777;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Nút Sửa */
+.edit-btn {
+  padding: 5px 10px;
+  background-color: #ffc107; /* Màu vàng */
+  color: white; /* Chỉnh màu chữ thành trắng */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: 0.3s;
+}
+
+.edit-btn:hover {
+  background-color: #e0a800; /* Màu vàng đậm hơn khi hover */
+}
+/* Nút Lưu */
+.edit-form .save-btn {
+  background-color: #28a745; /* Màu xanh lá */
+  color: white; /* Chữ trắng */
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+/* Nút Hủy */
+.edit-form .cancel-btn {
+  background-color: #dc3545; /* Màu đỏ */
+  color: white; /* Chữ trắng */
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
